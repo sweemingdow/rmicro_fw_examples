@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package user_api;
+
+service UserInfoProvider {
+  rpc UserInfo(UserInfoReq) returns (UserInfoResp);
+}
+
+service UserSecurityProvider {
+  rpc VerifyTradePwd(VerifyTradePwdReq) returns (VerifyTradePwdResp);
+}
+
+message UserInfoReq {
+  string uid = 1;
+}
+
+message UserInfoResp {
+  string uid = 1;
+  string nickname = 2;
+  string avatar = 3;
+  string email = 4;
+  string phone = 5;
+}
+
+message  VerifyTradePwdReq {
+  string uid = 1;
+  string trade_pwd = 2;
+}
+
+message  VerifyTradePwdResp {
+  bool ok = 1;
+}

@@ -1,0 +1,74 @@
+[workspace]
+resolver = "3"
+members = ["agg_api", "auth_api", "gateway_api", "order_api", "proto_bin", "user_api"]
+
+
+[workspace.dependencies]
+fw_boot = { path = "../rmicro_fw/fw_boot" }
+fw_base = { path = "../rmicro_fw/fw_base" }
+fw_error = { path = "../rmicro_fw/fw_error" }
+fw_gateway = { path = "../rmicro_fw/fw_gateway" }
+fw_log = { path = "../rmicro_fw/fw_log" }
+fw_regdis = { path = "../rmicro_fw/fw_regdis" }
+fw_rpc = { path = "../rmicro_fw/fw_rpc" }
+fw_web = { path = "../rmicro_fw/fw_web" }
+fw_adapter = { path = "../rmicro_fw/fw_adapter" }
+fw_sqlx = { path = "../rmicro_fw/fw_sqlx" }
+
+# 异步运行时
+tokio = { version = "1.0", features = ["full"] }
+tokio-util = { version = "0.7", features = ["rt"] }
+
+# rpc框架
+tonic = "0.12"
+tonic-build = "0.12"
+
+# 增强protobuf
+prost = "0.13"
+
+# 序列化
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+# 解析如: 30s之类的时间
+humantime-serde = "1"
+
+# 日志追踪
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "chrono"] }
+tracing-appender = "0.2"
+
+# web框架
+axum = { version = "0.7", features = ["macros"] }
+
+# nacos注册/发现
+nacos-sdk = { version = "0.6", features = ["default"] }
+
+# 并发安全map
+dashmap = "6"
+
+tower = { version = "0.4", features = ["discover"] }
+tower-http = { version = "0.5", features = ["trace"] }
+tokio-stream = "0.1"
+
+# 本地ip
+local-ip-address = "0.6.10"
+
+# 环境参数
+dotenv = "0.15"
+
+# 时间处理
+chrono = { version = "0.4", features = ["serde"] }
+
+# 异步trait
+async-trait = { version = "0.1" }
+
+# 错误处理
+anyhow = "1.0"
+thiserror = "2.0"
+
+arc-swap = { version = "1.8" }
+
+singleflight-async = { version = "0.2" }
+
+sqlx = { version = "0.8", features = ["runtime-tokio", "mysql", "migrate", "chrono"] }

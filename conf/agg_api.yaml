@@ -1,0 +1,23 @@
+app-cfg:
+  http-port: 9300
+  rpc-port: 9301
+  stop-timeout: 8s
+  component-clean-timeout: 5s
+  stop-stages: 2
+  stage-stop-timeout: 3s
+
+nacos-cli-cfg:
+  server-addr: 192.168.1.155:8848
+  namespace-id: 94b648d1-c142-4dfb-a205-73fd24c80e16
+
+nacos-center-cfg:
+  config:
+    group-name: AGG_API
+  registry:
+    group-name: RMICRO_TEST
+
+log-cfg:
+  max-log-files: 3
+  log-dir: ./.logs
+  thread-name: false
+  thread-id: false

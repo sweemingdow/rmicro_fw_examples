@@ -1,0 +1,23 @@
+syntax ="proto3";
+
+package order_api;
+
+service OrderInfoProvider {
+  rpc OrderList(OrderListReq) returns (OrderListResp);
+}
+
+message OrderListReq {
+  string uid = 1;
+}
+
+message OrderListResp {
+  repeated OrderItemResp items = 1;
+}
+
+message OrderItemResp {
+  string order_id = 1;
+  string price = 2;
+  string sku_id = 3;
+  string spu_id = 4;
+  string goods_title = 5;
+}

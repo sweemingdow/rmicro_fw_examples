@@ -1,0 +1,20 @@
+[package]
+name = "agg_api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+proto_bin = { path = "../proto_bin", features = ["order_api"] }
+
+fw_boot = { workspace = true }
+fw_base = { workspace = true }
+fw_error = { workspace = true }
+fw_log = { workspace = true }
+fw_regdis = { workspace = true }
+fw_rpc = { workspace = true }
+fw_web = { workspace = true }
+
+tokio = { workspace = true }
+tracing = { workspace = true }
+axum = { workspace = true }
+tonic = { workspace = true }

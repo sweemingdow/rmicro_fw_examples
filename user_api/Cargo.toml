@@ -1,0 +1,31 @@
+[package]
+name = "user_api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+proto_bin = { path = "../proto_bin", features = ["user_api"] }
+
+fw_boot = { workspace = true }
+fw_base = { workspace = true }
+fw_error = { workspace = true }
+fw_log = { workspace = true }
+fw_regdis = { workspace = true }
+fw_rpc = { workspace = true }
+fw_web = { workspace = true }
+fw_adapter = { workspace = true, features = ["cfg_bridge", "sqlx_bridge", "web_bridge"] }
+fw_sqlx = { workspace = true }
+
+tokio = { workspace = true }
+tracing = { workspace = true }
+axum = { workspace = true }
+tonic = { workspace = true }
+serde = { workspace = true }
+serde_yaml = { workspace = true }
+humantime-serde = { workspace = true }
+nacos-sdk = { workspace = true }
+sqlx = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+chrono = { workspace = true }
+async-trait = { workspace = true }
