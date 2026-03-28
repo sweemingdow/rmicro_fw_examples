@@ -13,7 +13,7 @@ fw_log = { workspace = true }
 fw_regdis = { workspace = true }
 fw_rpc = { workspace = true }
 fw_web = { workspace = true }
-fw_adapter = { workspace = true, features = ["cfg_bridge", "sqlx_bridge", "web_bridge"] }
+fw_adapter = { workspace = true, features = ["cfg_bridge", "web_bridge"] }
 fw_sqlx = { workspace = true }
 
 tokio = { workspace = true }
@@ -29,3 +29,7 @@ anyhow = { workspace = true }
 thiserror = { workspace = true }
 chrono = { workspace = true }
 async-trait = { workspace = true }
+
+[[bin]]
+name = "user_api"
+path = "src/bin/main.rs"

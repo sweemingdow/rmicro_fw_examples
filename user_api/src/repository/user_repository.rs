@@ -1,10 +1,10 @@
 use crate::model::sql_mod::user::User;
 use anyhow::Context;
 use axum::async_trait;
-use fw_adapter::AnyResult;
-use fw_adapter::err_bridge::AppError;
+use fw_error::{AnyResult, AppError};
 use sqlx;
 use std::sync::Arc;
+
 #[async_trait]
 pub trait UserRepository {
     async fn user_info(&self, uid: &str) -> AnyResult<Option<User>>;
@@ -27,7 +27,7 @@ impl UserRepository for UserRepositoryImpl {
             .bind(uid)
             .fetch_optional(&self.sql_pool)
             .await
-            .map_err(AppError::SqlDbError)
+            .map_err(|e| AppError::SqlDbError(e.to_string()))
             .with_context(|| "qry user failed")
     }
 }

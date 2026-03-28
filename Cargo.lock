@@ -6,15 +6,26 @@ version = 4
 name = "agg_api"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
+ "async-trait",
  "axum",
+ "chrono",
+ "fw_adapter",
  "fw_base",
  "fw_boot",
  "fw_error",
  "fw_log",
  "fw_regdis",
  "fw_rpc",
+ "fw_sqlx",
  "fw_web",
+ "humantime-serde",
+ "nacos-sdk",
  "proto_bin",
+ "serde",
+ "serde_yaml",
+ "sqlx",
+ "thiserror 2.0.18",
  "tokio",
  "tonic",
  "tracing",
@@ -726,21 +737,29 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
+ "fw_base",
  "fw_error",
  "fw_regdis",
  "fw_sqlx",
- "regex",
  "serde",
  "sqlx",
  "thiserror 2.0.18",
- "tracing",
 ]
 
 [[package]]
 name = "fw_base"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
+ "fw_error",
+ "humantime-serde",
  "local-ip-address",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
@@ -748,7 +767,6 @@ name = "fw_boot"
 version = "0.1.0"
 dependencies = [
  "dotenv",
- "fw_adapter",
  "fw_base",
  "fw_error",
  "fw_log",
@@ -768,7 +786,9 @@ name = "fw_error"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "regex",
  "thiserror 2.0.18",
+ "tracing",
 ]
 
 [[package]]
@@ -800,11 +820,15 @@ dependencies = [
 name = "fw_rpc"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "dashmap 6.1.0",
+ "fw_adapter",
+ "fw_base",
  "fw_boot",
  "fw_error",
  "fw_regdis",
  "nacos-sdk",
+ "serde",
  "singleflight-async",
  "tokio",
  "tokio-util",
@@ -831,9 +855,14 @@ dependencies = [
 name = "fw_web"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "axum",
+ "fw_adapter",
+ "fw_base",
  "fw_boot",
  "fw_error",
+ "serde",
+ "serde_json",
  "tokio",
  "tokio-util",
  "tower-http 0.5.2",

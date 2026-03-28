@@ -5,14 +5,14 @@ use fw_web::axum_srv::chain_ext::BootChainWebExt;
 use fw_adapter::cfg_bridge::MysqlConfigWrapper;
 use fw_error::FwResult;
 use fw_sqlx::mysql::client;
+use fw_web::axum_srv::middleware;
 use proto_bin::user_api::user_info_provider_server::UserInfoProviderServer;
 use proto_bin::user_api::user_security_provider_server::UserSecurityProviderServer;
 use std::sync::Arc;
 use user_api::config::dynamic_listen::{DynamicConfig, DynamicConfigUpdater};
 use user_api::config::static_config::StaticConfig;
 use user_api::route;
-use user_api::rpc::user_info::UserInfoProviderImpl;
-use user_api::rpc::user_security::UserSecurityProviderImpl;
+use user_api::rpc::svc_route;
 use user_api::state::app_state::AppState;
 
 #[tokio::main]
@@ -34,6 +34,7 @@ async fn main() -> FwResult<()> {
     let app_state = AppState::new(sql_pool_clone);
 
     let rs_clone = rs.clone();
+    let us_clone = app_state.user_state();
     app.run_with(
         rs.clone(),
         |chain| async move {
@@ -42,10 +43,7 @@ async fn main() -> FwResult<()> {
                     route::configure_user_model(router, app_state.user_state())
                 })
                 .add_rpc_server("UserApiRpc", rs.clone(), |srv| {
-                    srv.add_service(UserInfoProviderServer::new(UserInfoProviderImpl::default()))
-                        .add_service(UserSecurityProviderServer::new(
-                            UserSecurityProviderImpl::default(),
-                        ))
+                    svc_route::configure_svc_route(srv, us_clone)
                 })
         },
         || async move { sql_pool.close().await },

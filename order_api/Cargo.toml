@@ -24,3 +24,7 @@ serde = { workspace = true }
 serde_yaml = { workspace = true }
 humantime-serde = { workspace = true }
 nacos-sdk = { workspace = true }
+
+[[bin]]
+name = "order_api"
+path = "src/bin/main.rs"

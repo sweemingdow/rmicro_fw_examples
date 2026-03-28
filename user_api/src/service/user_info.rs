@@ -1,10 +1,9 @@
 use crate::repository::user_repository::UserRepository;
 use anyhow::{Context, anyhow, bail};
 use async_trait::async_trait;
-use fw_adapter::AnyResult;
-use fw_adapter::err_bridge::AppError;
 use serde::Serialize;
 use std::sync::Arc;
+use fw_error::{AnyResult, AppError};
 
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -34,6 +33,8 @@ impl UserInfoServiceImpl {
 #[async_trait]
 impl UserInfoService for UserInfoServiceImpl {
     async fn user_info(&self, uid: &str) -> AnyResult<UserSimpleInfoResp> {
+        tracing::info!("pull simple info in service");
+
         let user = self
             .user_repo
             .user_info(uid)
