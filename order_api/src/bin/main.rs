@@ -1,6 +1,7 @@
 use axum::routing;
 use fw_boot::App;
 use fw_rpc::tonic_srv::chain_ext::BootChainRpcExt;
+use fw_rpc::tonic_srv::chain_ext::BootChainRpcTraceExt;
 use fw_web::axum_srv::chain_ext::BootChainWebExt;
 
 use fw_error::FwResult;
@@ -18,7 +19,7 @@ async fn main() -> FwResult<()> {
     app.run_with(
         rs.clone(),
         |chain| async move {
-            chain.add_rpc_server("OrderApiRpc", rs.clone(), |srv| {
+            chain.add_rpc_server_with_trace("OrderApiRpc", rs.clone(), |srv| {
                 srv_route::configure_svc_route(srv)
             })
         },

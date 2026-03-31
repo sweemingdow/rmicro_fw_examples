@@ -4,15 +4,15 @@ use axum::response::IntoResponse;
 use axum::{Extension, Router, routing};
 use fw_adapter::web_bridge::{RespResult, WebResult};
 use fw_base::context::web::WebContext;
-use fw_base::from_scope;
 use fw_base::my_utils::dy_trace;
+use fw_base::web_ctx_from_scope;
 
 pub fn router() -> Router<OrderAggState> {
     Router::new().route("/list", routing::get(order_list))
 }
 
 async fn order_list(State(s): State<OrderAggState>) -> WebResult<impl IntoResponse> {
-    let ctx = from_scope()?;
+    let ctx = web_ctx_from_scope()?;
 
     let _span = dy_trace::trace_with_action("order_list");
 

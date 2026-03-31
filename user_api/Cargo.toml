@@ -29,6 +29,10 @@ anyhow = { workspace = true }
 thiserror = { workspace = true }
 chrono = { workspace = true }
 async-trait = { workspace = true }
+tower = { workspace = true, features = ["timeout"] }
+tower-http = { workspace = true }
+http = { workspace = true }
+
 
 [[bin]]
 name = "user_api"

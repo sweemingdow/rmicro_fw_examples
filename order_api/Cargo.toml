@@ -24,6 +24,10 @@ serde = { workspace = true }
 serde_yaml = { workspace = true }
 humantime-serde = { workspace = true }
 nacos-sdk = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+http = { workspace = true }
+
 
 [[bin]]
 name = "order_api"

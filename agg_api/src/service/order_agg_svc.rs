@@ -40,9 +40,12 @@ impl OrderAggService for OrderAggServiceImpl {
                 uid: uid_owned.clone(),
             };
 
-            RpcCaller::call_with_trace("order_list", user_req, move |request| async move {
-                user_api_client.user_info(request).await
-            })
+            RpcCaller::call_trace_with_timeout(
+                "order_list",
+                Duration::from_millis(100),
+                user_req,
+                move |request| async move { user_api_client.user_info(request).await },
+            )
             .await
             .with_context(|| format!("fetch user info failed, uid={}", uid_owned))
             .map(|resp| resp.into_inner())
@@ -54,7 +57,7 @@ impl OrderAggService for OrderAggServiceImpl {
                 uid: uid_owned.clone(),
             };
 
-            RpcCaller::call_with_trace("order_list", order_req, move |req| async move {
+            RpcCaller::call_trace_default("order_list", order_req, move |req| async move {
                 order_api_client.order_list(req).await
             })
             .await

@@ -1,6 +1,8 @@
 use crate::state::user_state::UserState;
 use proto_bin::user_api::user_info_provider_server::UserInfoProvider;
 use proto_bin::user_api::{UserInfoReq, UserInfoResp};
+use std::time::Duration;
+use tokio::time;
 use tonic;
 
 pub struct UserInfoProviderImpl {
@@ -19,11 +21,11 @@ impl UserInfoProvider for UserInfoProviderImpl {
         &self,
         request: tonic::Request<UserInfoReq>,
     ) -> Result<tonic::Response<UserInfoResp>, tonic::Status> {
-        tracing::info!("user info, metadata:{:#?}", request.metadata());
+        tracing::info!("user info in provider");
+
+        time::sleep(Duration::from_millis(120)).await;
 
         let req = request.into_inner();
-
-        tracing::debug!(uid = %req.uid, "user info be called");
 
         let user = self.user_state.user_info_svc.user_info(&req.uid).await;
 

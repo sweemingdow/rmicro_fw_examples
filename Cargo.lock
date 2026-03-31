@@ -822,18 +822,22 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "dashmap 6.1.0",
+ "futures",
  "fw_adapter",
  "fw_base",
  "fw_boot",
  "fw_error",
  "fw_regdis",
+ "http",
  "nacos-sdk",
+ "pin-project",
  "serde",
  "singleflight-async",
  "tokio",
  "tokio-util",
  "tonic",
  "tower 0.4.13",
+ "tower-http 0.6.8",
  "tracing",
 ]
 
@@ -865,7 +869,7 @@ dependencies = [
  "serde_json",
  "tokio",
  "tokio-util",
- "tower-http 0.5.2",
+ "tower-http 0.6.8",
  "tracing",
 ]
 
@@ -1634,6 +1638,7 @@ dependencies = [
  "fw_rpc",
  "fw_sqlx",
  "fw_web",
+ "http",
  "humantime-serde",
  "nacos-sdk",
  "proto_bin",
@@ -1641,6 +1646,8 @@ dependencies = [
  "serde_yaml",
  "tokio",
  "tonic",
+ "tower 0.4.13",
+ "tower-http 0.5.2",
  "tracing",
 ]
 
@@ -2823,6 +2830,7 @@ dependencies = [
  "tower 0.5.3",
  "tower-layer",
  "tower-service",
+ "tracing",
 ]
 
 [[package]]
@@ -3005,6 +3013,7 @@ dependencies = [
  "fw_rpc",
  "fw_sqlx",
  "fw_web",
+ "http",
  "humantime-serde",
  "nacos-sdk",
  "proto_bin",
@@ -3014,6 +3023,8 @@ dependencies = [
  "thiserror 2.0.18",
  "tokio",
  "tonic",
+ "tower 0.4.13",
+ "tower-http 0.5.2",
  "tracing",
 ]
 

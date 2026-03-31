@@ -3,7 +3,6 @@ use fw_boot::config::Config;
 use fw_boot::state::RunState;
 use fw_error::FwResult;
 use fw_rpc::tonic_srv::chan_factory::RpcChanFactory;
-use fw_rpc::tonic_srv::middleware;
 use fw_rpc::tonic_srv::provider::RpcProviderHolder;
 use proto_bin::order_api::order_info_provider_client::OrderInfoProviderClient;
 use proto_bin::user_api::user_info_provider_client::UserInfoProviderClient;
@@ -27,7 +26,7 @@ impl AggApiRpcClientHolder {
         let rpc_chan_factory = RpcChanFactory::with_preload_then_log(
             &cfg.nacos_center_cfg.registry.group_name,
             rs.nacos_proxy(),
-            static_cfg.get_rpc_config()?,
+            static_cfg.comm_static_cfg.get_rpc_srv_ele()?,
         )
         .await?;
 
