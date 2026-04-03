@@ -4,3 +4,33 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+fw_base = { workspace = true }
+fw_error = { workspace = true }
+fw_regdis = { workspace = true }
+fw_boot = { workspace = true }
+fw_gateway = { workspace = true }
+
+pingora-core = { version = "0.8" }
+pingora-proxy = { version = "0.8" }
+pingora-http = { version = "0.8" }
+pingora-load-balancing = { version = "0.8" }
+pingora = { version = "0.8" }
+
+arc-swap = { workspace = true }
+
+serde = { workspace = true }
+serde_yaml = { workspace = true }
+humantime-serde = { workspace = true }
+tracing = { workspace = true }
+prost = { workspace = true }
+async-trait = { workspace = true }
+http = { workspace = true }
+tokio = { workspace = true }
+nacos-sdk = { workspace = true }
+uuid = { workspace = true }
+postcard = { workspace = true }
+base64 = { workspace = true }
+
+[[bin]]
+name = "gateway_api"
+path = "src/bin/main.rs"
