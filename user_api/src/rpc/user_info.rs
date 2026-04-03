@@ -23,8 +23,6 @@ impl UserInfoProvider for UserInfoProviderImpl {
     ) -> Result<tonic::Response<UserInfoResp>, tonic::Status> {
         tracing::info!("user info in provider");
 
-        time::sleep(Duration::from_millis(120)).await;
-
         let req = request.into_inner();
 
         let user = self.user_state.user_info_svc.user_info(&req.uid).await;

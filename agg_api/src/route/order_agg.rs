@@ -1,14 +1,15 @@
 use crate::state::order_agg_state::OrderAggState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::response::IntoResponse;
-use axum::{Extension, Router, routing};
+use axum::{Router, routing};
 use fw_adapter::web_bridge::{RespResult, WebResult};
-use fw_base::context::web::WebContext;
 use fw_base::my_utils::dy_trace;
 use fw_base::web_ctx_from_scope;
 
 pub fn router() -> Router<OrderAggState> {
-    Router::new().route("/list", routing::get(order_list))
+    Router::new()
+        .route("/list", routing::get(order_list))
+        .route("/test", routing::get(order_test))
 }
 
 async fn order_list(State(s): State<OrderAggState>) -> WebResult<impl IntoResponse> {
@@ -21,4 +22,16 @@ async fn order_list(State(s): State<OrderAggState>) -> WebResult<impl IntoRespon
     let resp = s.order_agg_svc.order_list(ctx.uid_with_check()?).await?;
 
     Ok(RespResult::ok(resp))
+}
+
+async fn order_test(State(_): State<OrderAggState>) -> WebResult<impl IntoResponse> {
+    let ctx = web_ctx_from_scope()?;
+
+    let _span = dy_trace::trace_with_action("order_test");
+
+    tracing::debug!("order test handle start");
+
+    let uid = ctx.uid_with_check()?;
+
+    Ok(RespResult::ok(uid.to_string()))
 }

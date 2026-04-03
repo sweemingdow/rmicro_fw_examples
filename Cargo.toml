@@ -74,3 +74,10 @@ arc-swap = { version = "1.8" }
 singleflight-async = { version = "0.2" }
 
 sqlx = { version = "0.8", features = ["runtime-tokio", "mysql", "migrate", "chrono"] }
+
+uuid = { version = "1", features = ["rng", "v7"] }
+
+# 极致轻量序列化
+postcard = { version = "1", features = ["use-std"] }
+
+base64 = { version = "0", features = ["std"] }
