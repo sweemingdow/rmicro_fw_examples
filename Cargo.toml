@@ -6,6 +6,7 @@ members = ["agg_api", "auth_api", "gateway_api", "order_api", "proto_bin", "user
 [workspace.dependencies]
 fw_boot = { path = "../rmicro_fw/fw_boot" }
 fw_base = { path = "../rmicro_fw/fw_base" }
+fw_crypto = { path = "../rmicro_fw/fw_crypto" }
 fw_error = { path = "../rmicro_fw/fw_error" }
 fw_gateway = { path = "../rmicro_fw/fw_gateway" }
 fw_log = { path = "../rmicro_fw/fw_log" }
@@ -35,7 +36,7 @@ humantime-serde = "1"
 
 # 日志追踪
 tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "chrono"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "chrono", "ansi"] }
 tracing-appender = "0.2"
 
 http = { version = "1.4" }

@@ -7,3 +7,8 @@ pub mod user_api {
 pub mod order_api{
     tonic::include_proto!("order_api");
 }
+
+#[cfg(feature = "auth_api")]
+pub mod auth_api{
+    tonic::include_proto!("auth_api");
+}

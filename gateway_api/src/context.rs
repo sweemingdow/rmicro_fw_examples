@@ -1,10 +1,11 @@
-use std::borrow::Cow;
+use proto_bin::auth_api::ParseTokenResp;
 use serde::{Deserialize, Serialize};
+use std::borrow::Cow;
 use std::time::Instant;
-use uuid::Uuid;
 
 pub struct GatewayContext {
-    pub req_id: Uuid,
+    pub req_id: String,
+    pub auth_resp: Cow<'static, Option<ParseTokenResp>>,
     pub client_type: u8,
     pub client_version: Cow<'static, str>,
     pub start: Instant,

@@ -4,17 +4,21 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+proto_bin = { path = "../proto_bin", features = ["auth_api"] }
 fw_base = { workspace = true }
 fw_error = { workspace = true }
 fw_regdis = { workspace = true }
 fw_boot = { workspace = true }
+fw_rpc = { workspace = true }
 fw_gateway = { workspace = true }
+fw_crypto = { workspace = true }
 
 pingora-core = { version = "0.8" }
 pingora-proxy = { version = "0.8" }
 pingora-http = { version = "0.8" }
 pingora-load-balancing = { version = "0.8" }
 pingora = { version = "0.8" }
+moka = { version = "0", features = ["future"] }
 
 arc-swap = { workspace = true }
 
@@ -30,6 +34,9 @@ nacos-sdk = { workspace = true }
 uuid = { workspace = true }
 postcard = { workspace = true }
 base64 = { workspace = true }
+tonic = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
 
 [[bin]]
 name = "gateway_api"

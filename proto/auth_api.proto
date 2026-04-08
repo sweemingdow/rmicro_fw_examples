@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package auth_api;
+
+service AuthInfoProvider {
+  rpc ParseToken(ParseTokenReq) returns (ParseTokenResp);
+}
+
+message ParseTokenReq {
+  string token = 1;
+  string nonce = 2;
+}
+
+message ParseTokenResp {
+  string uid = 1;
+  uint32 client_type = 2;
+  string role = 3;
+}
+

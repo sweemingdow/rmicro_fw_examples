@@ -4,3 +4,32 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+proto_bin = { path = "../proto_bin", features = ["auth_api"] }
+
+fw_boot = { workspace = true }
+fw_crypto = { workspace = true }
+fw_base = { workspace = true }
+fw_error = { workspace = true }
+fw_log = { workspace = true }
+fw_regdis = { workspace = true }
+fw_rpc = { workspace = true }
+fw_web = { workspace = true }
+fw_adapter = { workspace = true }
+
+
+tokio = { workspace = true }
+tracing = { workspace = true }
+axum = { workspace = true }
+tonic = { workspace = true }
+serde = { workspace = true }
+serde_yaml = { workspace = true }
+humantime-serde = { workspace = true }
+nacos-sdk = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+http = { workspace = true }
+
+
+[[bin]]
+name = "auth_api"
+path = "src/bin/main.rs"

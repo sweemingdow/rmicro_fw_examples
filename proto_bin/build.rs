@@ -14,6 +14,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("cargo:rerun-if-changed={}", p);
     }
 
+    if cfg!(feature = "auth_api") {
+        let p = "../proto/auth_api.proto";
+        protos.push(p);
+        println!("cargo:rerun-if-changed={}", p);
+    }
+
     // 2. 只要有任何一个 feature 开启，就执行编译
     if !protos.is_empty() {
         tonic_build::configure()

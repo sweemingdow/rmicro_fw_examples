@@ -14,3 +14,4 @@ tonic-build = { workspace = true }
 default = []
 user_api = []
 order_api = []
+auth_api = []
